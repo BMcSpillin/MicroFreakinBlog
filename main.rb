@@ -5,6 +5,8 @@ require "sqlite3"
 require "rake"
 require "sinatra/flash"
 
+set :database, "sqlite3: MFB.db"
+
 
 get "/" do 
   
