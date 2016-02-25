@@ -14,5 +14,5 @@ get "/" do
 end
 
 get "/sign-up" do
-  erb :sign_in
+  erb :sign_up
 end
