@@ -2,6 +2,7 @@ body {
   font-family: 'Bangers', cursive;
 }
 
+
 #topdiv {
    background-color: #333745;
    width: 100%;
@@ -27,3 +28,7 @@ body {
     float:middle;
     margin-top: 20px;
   }
+  
+form {
+  padding-left: 20px;
+}
