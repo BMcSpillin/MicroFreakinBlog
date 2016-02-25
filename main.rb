@@ -12,3 +12,7 @@ get "/" do
   
   erb  :index
 end
+
+get "/sign-up" do
+  erb :sign_in
+end
