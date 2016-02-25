@@ -5,5 +5,6 @@ class CreatePostsTable < ActiveRecord::Migration
       table.string :content
       table.string :image
       table.datetime :timestamp
+    end
   end
 end
