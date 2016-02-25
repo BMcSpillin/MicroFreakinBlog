@@ -5,3 +5,7 @@ body {
 form {
   padding-left: 20px;
 }
+
+form input {
+  width: 226px;
+}
