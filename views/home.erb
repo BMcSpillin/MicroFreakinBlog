@@ -1,0 +1,18 @@
+<% @users.current do |user| %>
+<h3><%= user.handle %></h3>
+<h4><%= user.station %></h4>
+<p><%= user.bio %></p>
+<% end %>
+
+<% @posts.new do |post| %>
+<form method="POST" action="/posts/new">
+  <textarea name="[post]text" placeholder="My Freakin' Commute"></textarea>
+  <input type="submit" value="Freakin' Share">
+</form>
+<% end %>
+
+
+  
+<!-- <span><%=post.user_id %></span>
+<span><%= post.timestamp %></span>
+<p><%= post.content %></p> -->

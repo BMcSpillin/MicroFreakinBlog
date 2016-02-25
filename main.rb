@@ -12,3 +12,16 @@ get "/" do
   
   erb  :index
 end
+
+get "/" do
+  @users = User.current
+  erb :home
+end
+
+get "/home" do
+  @post = Post.new()
+  erb :home
+end
+
+get "/" do
+end
