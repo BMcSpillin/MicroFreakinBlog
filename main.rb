@@ -23,6 +23,14 @@ post "/" do
   erb :index
 end
 
+
+
+get "/home" do
+  
+  erb :home
+end
+
+
 get "/sign-up" do
   erb :sign_up
 end
