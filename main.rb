@@ -6,18 +6,14 @@ require "rake"
 require "sinatra/flash"
 require "./models"
 
-
 enable :sessions
-
 set :database, "sqlite3:MFB.db"
 
-  
 def current_user
   if session[:user_id]
     @current_user = User.find(session[:user_id])
   end
 end
-
 
 get "/" do  
   erb :index
@@ -38,6 +34,7 @@ end
 
 
 get "/home" do
+
   @user = current_user
   erb :home
 end
@@ -52,6 +49,21 @@ post "/home" do
   end
 
   erb :home
+end
+
+post "/home" do
+
+@post = Post.where(current_user)
+
+  if current_user
+    if @user && params[:content] != nil
+      @post = Post.new(params[:content])
+
+      newPost = @post.save
+    end
+  
+  end  
+    erb :home
 end
 
 get "/sign-up" do
@@ -80,7 +92,8 @@ post "/sign-up" do
     else
       flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
     end
-      erb :sign_up
+  
+  erb :sign_up
 end
 
 get "/home" do
