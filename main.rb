@@ -23,10 +23,13 @@ post "/" do
   erb :index
 end
 
+
+
 get "/home" do
   
   erb :home
 end
+
 
 get "/sign-up" do
   erb :sign_up
@@ -56,3 +59,20 @@ post "/sign-up" do
     end
       erb :sign_up
 end
+
+get "/home" do
+  erb :home
+end
+
+post "/home" do
+  if params[:content] != nil
+    @post = Post.new(
+    content: params[:content],
+    user_id: current_user[:id]
+    )
+    @post.save
+  end
+
+  erb :home
+end
+

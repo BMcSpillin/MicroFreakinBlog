@@ -1,3 +1,6 @@
+
+<form method="POST" action="/home">
+
 <% if @current_user %>
   <% @users.current do |user| %>
   <h3><%= user.handle %></h3>
@@ -9,7 +12,12 @@
 
 
 <form method="POST" action="/posts/new">
+
   <textarea type="text" id="newPost" name="[post]text" placeholder="My Freakin' Commute"></textarea>
   <br>
   <input type="submit" id="submit" value="Freakin' Tell Me About It">
 </form>
+
+<div>
+  <%= @post %>
+</div>
