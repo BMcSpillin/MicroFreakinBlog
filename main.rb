@@ -28,3 +28,10 @@ post "/sign-up" do
 
   erb :sign_up
 end
+
+post "/index" do
+
+    redirect "/home"
+
+  erb :index
+end
