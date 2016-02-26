@@ -51,8 +51,8 @@ form {
 
 form input, textarea {
   width: 100%;
-  margin: 0 auto;
-  padding: 0;
+  margin: 4px auto;
+  padding: 6px;
 }
 
 textarea {
