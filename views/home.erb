@@ -1,3 +1,11 @@
+<% if @current_user %>
+  <% User.current do |current_user| %>
+  <h3><%= current_user.handle %></h3>
+  <h4><%= current_user.station %></h4>
+  <p><%= current_user.bio %></p>
+  <% end %>
+<% end %>
+
 
 
 <form method="POST" action="/posts/new">

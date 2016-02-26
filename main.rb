@@ -7,6 +7,7 @@ require "sinatra/flash"
 require "./models"
 
 set :database, "sqlite3:MFB.db"
+enable :sessions
 
 get "/" do  
   erb :index
@@ -17,7 +18,11 @@ post "/" do
 
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id
+    flash[:notice] = "You're freakin' in!"
     redirect "/home"
+  else 
+    flash[:alert] = "Wrong freakin' credentials.  Try again."
+    # redirect "/"
   end
 
   erb :index
