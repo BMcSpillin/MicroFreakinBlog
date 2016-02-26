@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>My Freakin Commute</title>
-  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css"> 
-  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Freakin' Commute</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet" type="text/css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
-</head>
-<body>
-<div id = "topdiv">
-<img id = "logo" src="/asset/mfc_logo.png" />
-<h1 id ="main_headline" >My Freakin Commute</h1>
-</div>
-
-<%= yield %>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <img id="logo" src="/assets/mfc_logo.png"/>
+      <h1>
+        My Freakin' Commute
+      </h1>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
 </html>

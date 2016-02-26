@@ -1,13 +1,18 @@
+////////////////layout styles///////////////////
+html {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Bangers', cursive;
 }
 
 
-#topdiv {
+header {
    background-color: #333745;
    width: 100%;
    line-height: 100px;
-   overflow: auto;
+   overflow: hidden;
  }  
 
    
@@ -17,22 +22,40 @@ body {
     width: 100px;
     height: 100px;
     float:left;
-
   }
-  #main_headline {
+
+  h1 {
     display: inline-block;
     font-size: 45px;
     letter-spacing: 6px;
     color: white; 
     padding-left: 20px;
-    float:middle;
     margin-top: 20px;
   }
-  
-form {
-  padding-left: 20px;
+
+///////////////////////////////////////
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-form input {
-  width: 226px;
+form {
+  max-width: 400px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+form input, textarea {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+#newPost {
+  height: 150px;
 }
