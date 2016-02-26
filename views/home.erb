@@ -1,8 +1,8 @@
 <% if @current_user %>
-  <% User.current do |current_user| %>
-  <h3><%= current_user.handle %></h3>
-  <h4><%= current_user.station %></h4>
-  <p><%= current_user.bio %></p>
+  <% @users.current do |user| %>
+  <h3><%= user.handle %></h3>
+  <h4><%= user.station %></h4>
+  <p><%= user.bio %></p>
   <% end %>
 <% end %>
 
