@@ -18,6 +18,19 @@
     @timestamp = params[:timestamp]
     @content = params[:content]
 
+////////////////
+  def password
+    @password ||= User.new(params[:password])
+  end
+///////////////
+else
+    flash[:alert] = "Wrong freakin' credentials.  Try again."
+    flash[:notice] = "You're freakin' in!"
+  //////////////
+  password
+    @password = User.create
+    self.params[:password] = @password
+  end
 /////
 post "/sign-up" do
   redirect "/"
@@ -26,4 +39,9 @@ end
   if params[:password] == @password && params[:username] == @username
   else
     flash "Your freakin' username or password is wrong."
+////
+
+/////
+<input type="text" id="ver_username" name="ver_username" placeholder="Verify Freakin' Username"><br>
+<input type="text" id="email" name="ver_email" placeholder="Verify Freakin' Email"><br>
 ////
