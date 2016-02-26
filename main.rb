@@ -9,18 +9,12 @@ set :database, "sqlite3:MFB.db"
 
 
 get "/" do  
-  erb  :index
-end
-
-
-get "/home" do
-  @users = User.current
-  erb :home
+  erb :index
 end
 
 get "/home" do
-  @post = Post.new()
-  erb :home
+
+    erb :home
 end
 
 
