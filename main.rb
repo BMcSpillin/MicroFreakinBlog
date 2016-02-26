@@ -42,7 +42,6 @@ get "/home" do
   erb :home
 end
 
-<<<<<<< HEAD
 post "/home" do
   if params[:content] != nil
     @post = Post.new(
@@ -54,9 +53,6 @@ post "/home" do
 
   erb :home
 end
-
-=======
->>>>>>> 8dbaa67314d5a4874a099fd6bdfa4d1dc3bfc743
 
 get "/sign-up" do
   erb :sign_up
@@ -87,9 +83,6 @@ post "/sign-up" do
       erb :sign_up
 end
 
-<<<<<<< HEAD
-
-=======
 get "/home" do
   erb :home
 end
@@ -105,5 +98,3 @@ post "/home" do
 
   erb :home
 end
->>>>>>> 8dbaa67314d5a4874a099fd6bdfa4d1dc3bfc743
-
