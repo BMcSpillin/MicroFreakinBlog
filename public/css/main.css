@@ -62,3 +62,14 @@ textarea {
 #newPost {
   height: 150px;
 }
+
+.flash {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.notice {
+  border: 1px solid green;
+  background-color: #ccff99;
+}
