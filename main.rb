@@ -6,9 +6,8 @@ require "rake"
 require "sinatra/flash"
 require "./models"
 
-set :database, "sqlite3:MFB.db"
 enable :sessions
-
+set :database, "sqlite3:MFB.db"
 
 def current_user
   if session[:user_id]
@@ -25,17 +24,30 @@ post "/" do
 
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id
-    flash[:notice] = "You're freakin' in!"
     redirect "/home"
-  else 
-    flash[:alert] = "Wrong freakin' credentials.  Try again."
-    # redirect "/"
   end
 
+  # @user.save
   erb :index
 end
 
+
+
 get "/home" do
+
+  @user = current_user
+  erb :home
+end
+
+post "/home" do
+  if params[:content] != nil
+    @post = Post.new(
+    content: params[:content],
+    user_id: current_user[:id]
+    )
+    @post.save
+  end
+
   erb :home
 end
 
@@ -78,8 +90,24 @@ post "/sign-up" do
       redirect "/home"
 
     else
-      flash[:alert] = "Check your freakin' credentials. Does your ish match?"
+      flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
     end
   
   erb :sign_up
+end
+
+get "/home" do
+  erb :home
+end
+
+post "/home" do
+  if params[:content] != nil
+    @post = Post.new(
+    content: params[:content],
+    user_id: current_user[:id]
+    )
+    @post.save
+  end
+
+  erb :home
 end
