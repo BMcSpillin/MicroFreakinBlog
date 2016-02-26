@@ -17,3 +17,13 @@
 
     @timestamp = params[:timestamp]
     @content = params[:content]
+
+/////
+post "/sign_up" do
+  redirect "/"
+  erb :sign_up
+end
+  if params[:password] == @password && params[:username] == @username
+  else
+    flash "Your freakin' username or password is wrong."
+////

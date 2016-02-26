@@ -22,3 +22,9 @@ get "/sign-up" do
   erb :sign_up
 end
 
+post "/sign-up" do
+
+    redirect "/home"
+
+  erb :sign_up
+end
