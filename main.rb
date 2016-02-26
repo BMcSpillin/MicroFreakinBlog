@@ -9,6 +9,14 @@ require "./models"
 set :database, "sqlite3:MFB.db"
 enable :sessions
 
+  
+def current_user
+  if session[:user_id]
+    @current_user = User.find(session[:user_id])
+  end
+end
+
+
 get "/" do  
   erb :index
 end
@@ -25,11 +33,12 @@ post "/" do
     # redirect "/"
   end
 
+  @user.save
   erb :index
 end
 
 get "/home" do
-  
+  @user = current_user
   erb :home
 end
 
