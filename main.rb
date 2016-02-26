@@ -24,6 +24,7 @@ post "/" do
 end
 
 get "/home" do
+  
   erb :home
 end
 
