@@ -1,3 +1,38 @@
 body {
   font-family: 'Bangers', cursive;
 }
+
+
+#topdiv {
+   background-color: #333745;
+   width: 100%;
+   line-height: 100px;
+   overflow: auto;
+ }  
+
+   
+#logo {
+    display: inline-block;
+    padding: 20px;
+    width: 100px;
+    height: 100px;
+    float:left;
+
+  }
+  #main_headline {
+    display: inline-block;
+    font-size: 45px;
+    letter-spacing: 6px;
+    color: white; 
+    padding-left: 20px;
+    float:middle;
+    margin-top: 20px;
+  }
+  
+form {
+  padding-left: 20px;
+}
+
+form input {
+  width: 226px;
+}

@@ -8,12 +8,12 @@ require "sinatra/flash"
 set :database, "sqlite3:MFB.db"
 
 
-get "/" do 
-  
+get "/" do  
   erb  :index
 end
 
-get "/" do
+
+get "/home" do
   @users = User.current
   erb :home
 end
@@ -23,5 +23,8 @@ get "/home" do
   erb :home
 end
 
-get "/" do
+
+get "/sign-up" do
+  erb :sign_up
 end
+
