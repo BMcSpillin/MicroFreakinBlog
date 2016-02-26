@@ -1,0 +1,14 @@
+
+  <h3><%= @user.handle %></h3>
+  <h4><%= @user.station %></h4>
+  <p><%= @user.bio %></p>
+
+
+
+
+
+<form method="POST" action="/posts/new">
+  <textarea type="text" id="newPost" name="[post]text" placeholder="My Freakin' Commute"></textarea>
+  <br>
+  <input type="submit" id="submit" value="Freakin' Tell Me About It">
+</form>

@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>My Freakin Commute</title>
-  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css"> 
-  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Freakin' Commute</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet" type="text/css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
-</head>
-<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <img id="logo" src="/assets/mfc_logo.png"/>
+      <h1>
+        My Freakin' Commute
+      </h1>    
+    </header>
+    <nav>
+        <a href="/home">Post</a>
+        <a href="/sign-up">Sign up</a>
+      </nav>
+    <main>
 
-
-<%= yield %>
-</body>
+    
+      <% if flash[ :notice] %>
+        <div class= "flash notice">
+          <%= flash[ :notice] %>
+        </div>
+      <% end %>
+      
+      <% if flash[ :alert] %>
+        <div class= "flash alert">
+          <%= flash[ :alert] %>
+        </div>  
+       <% end %>
+        
+      <%= yield %>
+    </main>
+  </body>
 </html>

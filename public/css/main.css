@@ -1,7 +1,76 @@
+////////////////layout styles///////////////////
+html {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Bangers', cursive;
 }
 
+
+header {
+   background-color: #333745;
+   width: 100%;
+   line-height: 100px;
+   overflow: hidden;
+ }  
+
+   
+#logo {
+    display: inline-block;
+    padding: 20px;
+    width: 100px;
+    height: 100px;
+    float:left;
+  }
+
+  h1 {
+    display: inline-block;
+    font-size: 45px;
+    letter-spacing: 6px;
+    color: white; 
+    padding-left: 20px;
+    margin-top: 20px;
+  }
+
+nav {
+  padding: 20px;
+}
+///////////////////////////////////////
+
+main {
+  margin-top: 300px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 form {
-  padding-left: 20px;
+  max-width: 400px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+form input, textarea {
+  width: 100%;
+  margin: 4px auto;
+  padding: 6px;
+}
+
+textarea {
+  resize: none;
+}
+
+#newPost {
+  height: 150px;
+}
+
+.flash {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.notice {
+  border: 1px solid green;
+  background-color: #ccff99;
 }

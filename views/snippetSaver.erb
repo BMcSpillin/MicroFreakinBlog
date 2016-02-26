@@ -1,0 +1,47 @@
+<% User.current do |user| %>
+<h3><%= user.handle %></h3>
+<h4><%= user.station %></h4>
+<p><%= user.bio %></p>
+<% end %>
+
+<% @posts.new do |post| %>
+  <%= post.timestamp %>
+  <%= post.content %>
+<% end %>
+
+  
+<span><%=post.user_id %></span>
+<span><%= post.timestamp %></span>
+<p><%= post.content %></p>
+
+
+    @timestamp = params[:timestamp]
+    @content = params[:content]
+
+////////////////
+  def password
+    @password ||= User.new(params[:password])
+  end
+///////////////
+else
+    flash[:alert] = "Wrong freakin' credentials.  Try again."
+    flash[:notice] = "You're freakin' in!"
+  //////////////
+  password
+    @password = User.create
+    self.params[:password] = @password
+  end
+/////
+post "/sign-up" do
+  redirect "/"
+  erb :sign_up
+end
+  if params[:password] == @password && params[:username] == @username
+  else
+    flash "Your freakin' username or password is wrong."
+////
+
+/////
+<input type="text" id="ver_username" name="ver_username" placeholder="Verify Freakin' Username"><br>
+<input type="text" id="email" name="ver_email" placeholder="Verify Freakin' Email"><br>
+////
