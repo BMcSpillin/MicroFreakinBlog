@@ -7,6 +7,7 @@ require "sinatra/flash"
 require "./models"
 
 enable :sessions
+set :sessions, true
 set :database, "sqlite3:MFB.db"
 
 def current_user
@@ -34,7 +35,6 @@ end
 
 
 get "/home" do
-
   @user = current_user
   erb :home
 end
@@ -51,20 +51,9 @@ post "/home" do
   erb :home
 end
 
-post "/home" do
 
-@post = Post.where(current_user)
 
-  if current_user
-    if @user && params[:content] != nil
-      @post = Post.new(params[:content])
 
-      newPost = @post.save
-    end
-  
-  end  
-    erb :home
-end
 
 get "/sign-up" do
   erb :sign_up
@@ -96,9 +85,10 @@ post "/sign-up" do
   erb :sign_up
 end
 
-get "/home" do
-  erb :home
-end
+#get "/home" do
+ # @user = current_user
+ # erb :home
+#end
 
 post "/home" do
   if params[:content] != nil
@@ -107,7 +97,7 @@ post "/home" do
     user_id: current_user[:id]
     )
     @post.save
-  end
-
-  erb :home
-end
+   end
+  
+   erb :home
+ end
