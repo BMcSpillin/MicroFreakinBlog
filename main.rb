@@ -16,6 +16,7 @@ def current_user
 end
 
 get "/" do 
+  session.clear
   erb :index
 end
 
@@ -90,14 +91,18 @@ end
 
 get "/edit" do
   @posts = Post.all()
+  @users = User.all()
   erb :edit
 end
 
 
 post "/edit" do
+  @users = User.all()
+  @posts = Post.all()
+
   if params[:password] == params[:ver_password]
   
-    @user = User.update(
+    @users = User.update(
       email: params[:email],
       fname: params[:fname],
       lname: params[:lname],
@@ -106,8 +111,7 @@ post "/edit" do
       bio: params[:bio]
       )
 
-      @user.save
-      session[:user_id] = @user.id
+      @users.find(session[:user_id]).save
       flash[:notice] = "Transfer complete"
       redirect "/home"
 

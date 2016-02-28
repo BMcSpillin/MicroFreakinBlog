@@ -1,8 +1,14 @@
+<% current_user do |user| %>
+  <%= user.handle %>
+  <%= user.bio %>
+<% end %>
+<!-- This code is basically pseudo, but wouldn't it be something to this effect
+that would show the bio? (Which I know Matt fixed, but I am still not seeing pull
+though I may.) -->
+
 <form action="/home" method="POST">
-#One, not both of these.
+<!-- One, not both of these. -->
 <form method="POST" action="/posts/new">
-
-
   <textarea type="text" id="newPost" name="[post]text" placeholder="My Freakin' Commute"></textarea>
   <br>
   <input type="submit" id="submit" value="Freakin' Tell Me About It">
