@@ -79,6 +79,11 @@ post "/home" do
 end
 
 
+<% current_user do |user| %>
+  <%= img_tag :img, :src => @user.image, :alt => "Freakin' Profile Pic", :width => "100px", :height => "100px" %>
+<% end %>
+<!-- alt showing -->
 
 
-
+<img src="MFB.db/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px">
+<!-- broken image and alt showing -->

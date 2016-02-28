@@ -2,7 +2,8 @@
 <p><%= @user.station %></p>
 <p><%= @user.birthday %></p>
 <p><%= @user.bio %></p>
-<img src="<% @user.image %>" width="100px" height ="100px">
+<img src="MFB.db/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px">
+<!-- find route to where image is saved -->
 
 <form action="/home" method="POST">
 <!-- One, not both of these. -->

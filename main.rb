@@ -51,6 +51,8 @@ post "/home" do #this version once returned hashtag. others return nil.
     end
   end
 
+    redirect "/home"
+
     erb :home
 end
 
