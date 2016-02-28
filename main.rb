@@ -117,3 +117,7 @@ post "/edit" do
 
   erb :edit
 end
+
+get "/mta-status" do 
+  erb :mta_status
+end
