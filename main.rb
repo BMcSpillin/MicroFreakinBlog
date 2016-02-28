@@ -92,11 +92,9 @@ get "/signout" do
 end
 
 get "/edit" do
-  @posts = Post.all()
-  @users = User.all()
+  @user = current_user
   erb :edit
 end
-
 
 post "/edit" do
   @users = User.all()
@@ -104,7 +102,7 @@ post "/edit" do
 
   if params[:password] == params[:ver_password]
   
-    @users = User.update(
+    @user = User.update(
       email: params[:email],
       fname: params[:fname],
       lname: params[:lname],
@@ -113,7 +111,8 @@ post "/edit" do
       bio: params[:bio]
       )
 
-      @users.find(session[:user_id]).save
+      @user.save!
+      session[:user_id] = @user.id
       flash[:notice] = "Transfer complete"
       redirect "/home"
 
@@ -124,6 +123,7 @@ post "/edit" do
   erb :edit
 end
 
-get "/mta-status" do 
+get "/mta-status" do
+  @user = current_user
   erb :mta_status
 end
