@@ -1,10 +1,7 @@
-<% current_user do |user| %>
-  <%= user.handle %>
-  <%= user.bio %>
-<% end %>
-<!-- This code is basically pseudo, but wouldn't it be something to this effect
-that would show the bio? (Which I know Matt fixed, but I am still not seeing pull
-though I may.) -->
+<p><%= @user.handle %></p>
+<p><%= @user.station %></p>
+<p><%= @user.birthday %></p>
+<p><%= @user.bio %></p>
 
 <form action="/home" method="POST">
 <!-- One, not both of these. -->
