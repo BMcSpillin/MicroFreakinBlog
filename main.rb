@@ -15,7 +15,7 @@ def current_user
   end
 end
 
-get "/" do  
+get "/" do 
   erb :index
 end
 
@@ -27,42 +27,29 @@ post "/" do
     redirect "/home"
   end
 
-  # @user.save
   erb :index
 end
 
-
-
 get "/home" do
-
   @user = current_user
   erb :home
 end
 
-post "/home" do
-  if params[:content] != nil
-    @post = Post.new(
-    content: params[:content],
-    user_id: current_user[:id]
-    )
-    @post.save
-  end
+post "/home" do #this version once returned hashtag. others return nil.
 
-  erb :home
-end
-
-post "/home" do
-
-@post = Post.where(current_user)
+  @posts = Post.where(current_user)
 
   if current_user
     if @user && params[:content] != nil
-      @post = Post.new(params[:content])
-
-      newPost = @post.save
+      Post.new(
+        user_id: current_user,
+        content: params[:content],
+        timestamp: Time.now
+      )
+      # @post.save
     end
-  
-  end  
+  end
+
     erb :home
 end
 
@@ -89,25 +76,44 @@ post "/sign-up" do
       flash[:notice] = "You're freakin' in!"
       redirect "/home"
 
-    else
-      flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
-    end
+  else
+    flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
+  end
   
   erb :sign_up
 end
 
-get "/home" do
-  erb :home
+get "/signout" do
+  session[:user_id] = nil
+  redirect "/"
 end
 
-post "/home" do
-  if params[:content] != nil
-    @post = Post.new(
-    content: params[:content],
-    user_id: current_user[:id]
-    )
-    @post.save
+get "/edit" do
+  @posts = Post.all()
+  erb :edit
+end
+
+
+post "/edit" do
+  if params[:password] == params[:ver_password]
+  
+    @user = User.update(
+      email: params[:email],
+      fname: params[:fname],
+      lname: params[:lname],
+      birthday: params[:birthday],
+      station: params[:station],
+      bio: params[:bio]
+      )
+
+      @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "Transfer complete"
+      redirect "/home"
+
+  else
+    flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
   end
 
-  erb :home
+  erb :edit
 end
