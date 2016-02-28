@@ -1,14 +1,15 @@
 <% @users.find(session[:user_id]) do |user| %>
 <form method="POST" action="/home">
-  <label id="username" name="username"><%= user[:username] %><br>
-  <input type="password" id="password" name="password" placeholder="Freakin' Password"><br>
-  <input type="password" id="ver_password" name="ver_password" placeholder="Verify Freakin' Password"><br>
-  <input type="text" id="email" name="email" placeholder="<%= user.email %>"><br>
+  <span><%= user.handle %></span><br>
+  <input type="email" id="email" name="email" placeholder="<%= user.email %>"><br>
   <input type="text" id="fname" name="fname" placeholder="<%= user.fname %>"><br>
   <input type="text" id="lname" name="lname" placeholder="<%= user.lname %>"><br>
-  <input type="text" id="birthday" name="birthday" placeholder="<%= user.birthday %>"><br>
+  <input type="date" id="birthday" name="birthday" placeholder="<%= user.birthday %>"><br>
   <input type="text" id="station" name="station" placeholder="<%= user.station %>"><br>
   <textarea type="text" name="bio" id="bio" placeholder="<%= user.bio %>" cols="30" rows="15"></textarea><br>
+  Your Freakin' Mug: <input type="file" id="image" name="image" placeholder="<%= user.image %>"><br>
+  <input type="password" id="password" name="password" placeholder="Freakin' Password"><br>
+  <input type="password" id="ver_password" name="ver_password" placeholder="Verify Freakin' Password"><br>
   <input type="submit" id="submit" value="Update My Freakin' Details">
 </form>
 <% end %>
