@@ -95,7 +95,7 @@ post "/sign-up" do
       @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You're freakin' in!"
-      redirect "/home/#{@user.handle}"
+      redirect "/home"
   else
     flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
   end
@@ -103,24 +103,15 @@ post "/sign-up" do
   erb :sign_up
 end
 
-get "/signout" do
-  session[:user_id] = nil
-  redirect "/"
-end
-
 get "/edit" do
+ @user = current_user
+ # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+  # render list here
   @user = current_user
   erb :edit
 end
 
-get "/:id" do
-  @user = current_user
-  list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
-  render list here
- erb :edit
-end
-
-put "/home/user" do |user|
+put "/home" do
   if params[:password] == params[:ver_password]
     @user = current_user
 
@@ -133,10 +124,10 @@ put "/home/user" do |user|
     @user.bio = params[:bio]
 
     @user.save
-    redirect "/home/#{@user.handle}"
+    redirect "/home"
   else
     flash[:alert] = "Confirm your freakin' password."
-    redirect "/:id"
+    redirect "/edit"
   end
 end
 
@@ -171,6 +162,6 @@ post "/upload" do
   tempfile = params[:image]
   filename = params[:image]
   File.copy("./public/assets/#{filename}")
-  redirect '/:id'
-  # erb :id
+  redirect '/edit'
+  # erb :edit
 end
