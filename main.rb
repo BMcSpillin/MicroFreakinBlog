@@ -1,5 +1,6 @@
 require "sinatra"
 require "sinatra/activerecord"
+# require "active_record"
 require "sinatra/reloader"
 require "sqlite3"
 require "rake"
@@ -40,20 +41,19 @@ post "/home" do #this version once returned hashtag. others return nil.
 
   @posts = Post.where(current_user)
 
-  if current_user
     if @user && params[:content] != nil
       Post.new(
         user_id: current_user,
         content: params[:content],
         timestamp: Time.now
       )
-      # @post.save
+      @post.save
     end
-  end
 
-    redirect "/home"
+  params[:content] = @post.content
+  redirect "/home"
 
-    erb :home
+  erb :home
 end
 
 get "/sign-up" do
@@ -96,31 +96,49 @@ get "/edit" do
   erb :edit
 end
 
-post "/edit" do
-  @users = User.all()
-  @posts = Post.all()
+# post "/edit" do
+#   if params[:password] == params[:ver_password]
+#     @users.update_attributes(
+#     # @user = User.update(
+#       email: params[:email],
+#       fname: params[:fname],
+#       lname: params[:lname],
+#       birthday: params[:birthday],
+#       station: params[:station],
+#       bio: params[:bio]
+#       )
 
-  if params[:password] == params[:ver_password]
-  
-    @user = User.update(
-      email: params[:email],
-      fname: params[:fname],
-      lname: params[:lname],
-      birthday: params[:birthday],
-      station: params[:station],
-      bio: params[:bio]
-      )
+#       @user.save
+#       session[:user_id] = @user.id
+#       flash[:notice] = "Transfer complete"
+#       redirect "/home"
+#   else
+#     flash[:alert] = "Try again, and make sure your freakin' passwords match." #not popping up
+#     redirect "/edit"
+#   end
 
-      @user.save!
-      session[:user_id] = @user.id
-      flash[:notice] = "Transfer complete"
-      redirect "/home"
+#   erb :edit
+# end
 
-  else
-    flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
-  end
+get "/:id" do
+  @user = current_user
 
   erb :edit
+end
+
+put "/:id" do |user|
+@user = current_user
+
+@user.password = params[:password]
+@user.email = params[:email]
+@user.fname = params[:fname]
+@user.lname = params[:lname]
+@user.birthday = params[:birthday]
+@user.station = params[:station]
+@user.bio = params[:bio]
+
+@user.save
+redirect "/home"
 end
 
 get "/mta-status" do
