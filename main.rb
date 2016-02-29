@@ -20,7 +20,7 @@ end
 # end
 
 get "/" do 
-  session.clear
+  #session.clear
   erb :index
 end
 
@@ -42,10 +42,10 @@ get "/home" do
   erb :home
 end
 
-get "/home/#{@user.handle}" do
+#get "/home/#{@user.handle}" do
 
-  erb :home/"#{@user.handle}"
-end
+ # erb :home/"#{@user.handle}"
+#end
 
 #   if params[:friendSearch] == Users.all(:handle)
 #     || params[:friendSearch] == Users.all(:fname)
@@ -117,12 +117,12 @@ get "/edit" do
   erb :edit
 end
 
-get "/:id" do
-  @user = current_user
-  list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+#get "/:id" do
+ # @user = current_user
+ # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
   #render list here
-  erb :edit
-end
+ # erb :edit
+#end
 
 put "/home/user" do |user|
   if params[:password] == params[:ver_password]
@@ -144,7 +144,7 @@ put "/home/user" do |user|
   end
 end
 
-delete "/:id" do |user|
+delete "/:user_id" do |user|
   @user = current_user
   @user.destroy
   redirect "/"
