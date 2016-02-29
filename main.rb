@@ -1,6 +1,5 @@
 require "sinatra"
 require "sinatra/activerecord"
-# require "active_record"
 require "sinatra/reloader"
 require "sqlite3"
 require "rake"
@@ -78,7 +77,6 @@ post "/sign-up" do
       session[:user_id] = @user.id
       flash[:notice] = "You're freakin' in!"
       redirect "/home"
-
   else
     flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
   end
@@ -96,30 +94,6 @@ get "/edit" do
   erb :edit
 end
 
-# post "/edit" do
-#   if params[:password] == params[:ver_password]
-#     @users.update_attributes(
-#     # @user = User.update(
-#       email: params[:email],
-#       fname: params[:fname],
-#       lname: params[:lname],
-#       birthday: params[:birthday],
-#       station: params[:station],
-#       bio: params[:bio]
-#       )
-
-#       @user.save
-#       session[:user_id] = @user.id
-#       flash[:notice] = "Transfer complete"
-#       redirect "/home"
-#   else
-#     flash[:alert] = "Try again, and make sure your freakin' passwords match." #not popping up
-#     redirect "/edit"
-#   end
-
-#   erb :edit
-# end
-
 get "/:id" do
   @user = current_user
 
@@ -127,18 +101,31 @@ get "/:id" do
 end
 
 put "/:id" do |user|
-@user = current_user
+  if params[:password] == params[:ver_password]
+    @user = current_user
 
-@user.password = params[:password]
-@user.email = params[:email]
-@user.fname = params[:fname]
-@user.lname = params[:lname]
-@user.birthday = params[:birthday]
-@user.station = params[:station]
-@user.bio = params[:bio]
+    @user.password = params[:password]
+    @user.email = params[:email]
+    @user.fname = params[:fname]
+    @user.lname = params[:lname]
+    @user.birthday = params[:birthday]
+    @user.station = params[:station]
+    @user.bio = params[:bio]
 
-@user.save
-redirect "/home"
+    @user.save
+    redirect "/home"
+  else
+    flash[:alert] = "Confirm your freakin' password."
+    redirect "/:id"
+  end
+end
+
+delete "/:id" do |user|
+  @user = current_user
+  @user.destroy
+  redirect "/"
+
+  erb :edit
 end
 
 get "/mta-status" do
