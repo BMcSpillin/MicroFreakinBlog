@@ -15,6 +15,10 @@ def current_user
   end
 end
 
+# def handle
+#   @user.params[:handle]
+# end
+
 get "/" do 
   session.clear
   erb :index
@@ -35,6 +39,17 @@ get "/home" do
   @user = current_user
   erb :home
 end
+
+get "/home/#{@user.handle}" do
+
+  erb :home/"#{@user.handle}"
+end
+
+#   if params[:friendSearch] == Users.all(:handle)
+#     || params[:friendSearch] == Users.all(:fname)
+#     || params[:friendSearch] == Users.all(:email)
+#   erb :home/friend
+# end
 
 post "/home" do #this version once returned hashtag. others return nil.
 
@@ -76,7 +91,7 @@ post "/sign-up" do
       @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You're freakin' in!"
-      redirect "/home"
+      redirect "/home/#{@user.handle}"
   else
     flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
   end
@@ -96,11 +111,12 @@ end
 
 get "/:id" do
   @user = current_user
-
+  list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+  #render list here
   erb :edit
 end
 
-put "/:id" do |user|
+put "/home/user" do |user|
   if params[:password] == params[:ver_password]
     @user = current_user
 
@@ -113,7 +129,7 @@ put "/:id" do |user|
     @user.bio = params[:bio]
 
     @user.save
-    redirect "/home"
+    redirect "/home/#{@user.handle}"
   else
     flash[:alert] = "Confirm your freakin' password."
     redirect "/:id"
@@ -131,4 +147,26 @@ end
 get "/mta-status" do
   @user = current_user
   erb :mta_status
+end
+
+# post "/upload" do
+#   if params[:file] &&
+#     (tmpfile = params[:file][:tempfile]) &&
+#     (name = params[:file][:filename])
+#     flash[:alert] = "No freakin' mug here."
+#     erb :id
+#   else
+#     erb :id
+#   end
+#   directory = "assets/files"
+#   path = File.join(directory, name)
+#   File.open(path, "wb") { |f| f.write(tmpfile.read) }
+# end
+
+post "/upload" do
+  tempfile = params[:image]
+  filename = params[:image]
+  File.copy("./public/assets/#{filename}")
+  redirect '/:id'
+  # erb :id
 end
