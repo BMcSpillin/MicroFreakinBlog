@@ -5,14 +5,28 @@
 <img src="User/#{@user.id}/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px">
 <!-- find route to where image is saved -->
 
-<form action="/home" method="POST">
-<!-- One, not both of these. -->
-<form method="POST" action="/posts/new">
-  <textarea type="text" id="newPost" name="[post]text" placeholder="My Freakin' Commute"></textarea>
-  <br>
-  <input type="submit" id="submit" value="Freakin' Tell Me About It">
-</form>
+<section id="add">
+  <form action="/home" method="POST">
+  <!-- One, not both of these. -->
+  <!-- <form method="POST" action="/posts/new"> -->
+    <textarea type="text" id="newPost" name="content" placeholder="My Freakin' Commute"></textarea>
+    <br>
+    <input type="submit" id="submit" value="Freakin' Tell Me About It">
+  </form>
+</section>
 
-<div>
-  <%= @post %>
+
+<div class="post_display">
+<% @posts.each do |post| %>
+  <article>
+    <p>
+      <%= post.content %>
+      <span><a href="/<%= post.id %>">[edit]</a></span>
+    </p>
+    <p class="links">
+      <a href="/<%= post.id %>/complete">&#8623;</a>
+    </p>
+    <p class="meta">Created: <%= post.timestamp %></p>
+  </article>
+<% end %>
 </div>

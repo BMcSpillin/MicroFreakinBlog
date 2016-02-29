@@ -33,23 +33,31 @@ end
 
 get "/home" do
   @user = current_user
+  @posts = Post.all
+  @title = "All Freakin' Posts"
   erb :home
 end
 
 post "/home" do #this version once returned hashtag. others return nil.
+  # p = Post.new
+  # p.id = user_id
+  # p.content = params[:content]
+  # p.timestamp = Time.now
+  # p.save
 
   @posts = Post.where(current_user)
 
-    if @user && params[:content] != nil
-      Post.new(
-        user_id: current_user,
+
+    if current_user && params[:content] != nil
+      Post.create(
+        user_id: current_user.id,
         content: params[:content],
         timestamp: Time.now
       )
-      @post.save
+      # session[:post_id] = @post.id
     end
 
-  params[:content] = @post.content
+  
   redirect "/home"
 
   erb :home
