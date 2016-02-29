@@ -107,7 +107,8 @@ get "/edit" do
  @user = current_user
  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
   # render list here
- erb :edit
+  @user = current_user
+  erb :edit
 end
 
 put "/home" do
@@ -161,6 +162,6 @@ post "/upload" do
   tempfile = params[:image]
   filename = params[:image]
   File.copy("./public/assets/#{filename}")
-  redirect '/:id'
-  # erb :id
+  redirect '/edit'
+  # erb :edit
 end
