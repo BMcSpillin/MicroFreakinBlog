@@ -4,15 +4,31 @@
 <p><%= user.bio %></p>
 <% end %>
 
+<h3><%= @user.handle %></h3>
+<h4><%= @user.station %></h4>
+<p><%= @user.bio %></p>
+
 <% @posts.new do |post| %>
   <%= post.timestamp %>
   <%= post.content %>
 <% end %>
 
+post "/home" do
+  if params[:content] != nil
+    @post = Post.new(
+    
+    content: params[:content],
+    )
+    
+    @post.save
+  end
+
+  erb :home
+end
+
   
 <span><%=post.user_id %></span>
 <span><%= post.timestamp %></span>
-<p><%= post.content %></p>
 
 
     @timestamp = params[:timestamp]
@@ -45,3 +61,29 @@ end
 <input type="text" id="ver_username" name="ver_username" placeholder="Verify Freakin' Username"><br>
 <input type="text" id="email" name="ver_email" placeholder="Verify Freakin' Email"><br>
 ////
+
+get "/home" do
+  erb :home
+end
+
+post "/home" do
+  if params[:content] != nil
+    @post = Post.new(
+    content: params[:content],
+    user_id: current_user[:id]
+    )
+    @post.save
+  end
+
+  erb :home
+end
+
+
+<% current_user do |user| %>
+  <%= img_tag :img, :src => @user.image, :alt => "Freakin' Profile Pic", :width => "100px", :height => "100px" %>
+<% end %>
+<!-- alt showing -->
+
+
+<img src="MFB.db/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px">
+<!-- broken image and alt showing -->

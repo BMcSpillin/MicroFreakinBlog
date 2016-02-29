@@ -12,29 +12,35 @@
   </head>
   <body>
     <header>
-      <img id="logo" src="/assets/mfc_logo.png"/>
+      <a href="/"><img id="logo" src="/assets/mfc_logo.png"/></a>
       <h1>
         My Freakin' Commute
       </h1>    
     </header>
     <nav>
-        <a href="/home">Post</a>
+      <% if session[:user_id] %>
+        <a href="/">Doors Closing</a>
+        <a href="/home">Showtime</a>
+        <a href="/:id">Station Transfer</a>
+      <% else %>
         <a href="/sign-up">Sign up</a>
+      <% end %>
+      <a href="/mta-status">MTA STATUS</a>
       </nav>
     <main>
 
     
       <% if flash[ :notice] %>
-        <div class= "flash notice">
+        <div class="flash notice">
           <%= flash[ :notice] %>
         </div>
       <% end %>
       
       <% if flash[ :alert] %>
-        <div class= "flash alert">
+        <div class="flash alert">
           <%= flash[ :alert] %>
         </div>  
-       <% end %>
+      <% end %>
         
       <%= yield %>
     </main>

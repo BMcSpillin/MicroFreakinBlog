@@ -1,17 +1,13 @@
+<p><%= @user.handle %></p>
+<p><%= @user.station %></p>
+<p><%= @user.birthday %></p>
+<p><%= @user.bio %></p>
+<img src="User/#{@user.id}/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px">
+<!-- find route to where image is saved -->
 
-
-  <h3><%= @user.handle %></h3>
-  <h4><%= @user.station %></h4>
-  <p><%= @user.bio %></p>
-
-
-
-
-
-
-
+<form action="/home" method="POST">
+<!-- One, not both of these. -->
 <form method="POST" action="/posts/new">
-
   <textarea type="text" id="newPost" name="[post]text" placeholder="My Freakin' Commute"></textarea>
   <br>
   <input type="submit" id="submit" value="Freakin' Tell Me About It">
