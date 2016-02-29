@@ -30,6 +30,9 @@ post "/" do
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id
     redirect "/home"
+  else
+    redirect "/"
+    flash[:alert]
   end
 
   erb :index
@@ -42,10 +45,10 @@ get "/home" do
   erb :home
 end
 
-#get "/home/#{@user.handle}" do
+# get "/home/#{@user.handle}" do
 
- # erb :home/"#{@user.handle}"
-#end
+#   erb :home/"#{@user.handle}"
+# end
 
 #   if params[:friendSearch] == Users.all(:handle)
 #     || params[:friendSearch] == Users.all(:fname)
@@ -53,15 +56,9 @@ end
 #   erb :home/friend
 # end
 
-post "/home" do #this version once returned hashtag. others return nil.
-  # p = Post.new
-  # p.id = user_id
-  # p.content = params[:content]
-  # p.timestamp = Time.now
-  # p.save
+post "/home" do
 
   @posts = Post.where(current_user)
-
 
     if current_user && params[:content] != nil
       Post.create(
@@ -71,7 +68,6 @@ post "/home" do #this version once returned hashtag. others return nil.
       )
       # session[:post_id] = @post.id
     end
-
   
   redirect "/home"
 
