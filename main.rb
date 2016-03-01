@@ -15,9 +15,9 @@ def current_user
   end
 end
 
-# def handle
-#   @user.params[:handle]
-# end
+def other_user
+  User.find(params[:id])
+end
 
 get "/" do 
   session.clear
@@ -108,26 +108,19 @@ post "/sign-up" do
 end
 
 get "/edit" do
-<<<<<<< HEAD
-
-end
-
-get "/users/:id" do
-  @user = User.find(params[:id])
-  @posts = @user.posts
-  erb :otheruser
-end
-
-put "/home/user" do |user|
-=======
- @user = current_user
- # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
-  # render list here
+  @user = current_user
   erb :edit
 end
 
+
+# put "/home" do |user|
+#  @user = current_user
+#  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+#   # render list here
+#   erb :edit
+# end
+
 put "/home" do
->>>>>>> 2c8d6ae7e37a206cf15462dd198469c2917e9394
   if params[:password] == params[:ver_password]
     @user = current_user
 
@@ -182,16 +175,37 @@ post "/upload" do
   # erb :edit
 end
 
-get "/friendSearch" do
-  @user = User.find_by_fname(params[:friendSearch])
+get "/users" do
+  if @user = User.find_by_fname(params[:friendSearch])
   @user = User.find_by_handle(params[:friendSearch])
   @user = User.find_by_email(params[:friendsearch])
+  
 
-  @user = User.find(params[:id])
+  redirect "/users/url"
 
-  redirect "/users/#{@user.id}"
   erb :friendSearch
 end
+
+get "/users/url" do
+  @user = User.find(params[:id])
+  @posts = @user.posts
+  erb :otheruser
+end
+
+
+get "/users" do
+  @user = other_user
+
+  erb :otheruser
+end
+
+# put "/friendSearch" do
+#   @user = User.find(params[:id])
+
+#   redirect "/users/#{@user.id}"
+#   erb :friendSearch
+# end
+
 
 
 
