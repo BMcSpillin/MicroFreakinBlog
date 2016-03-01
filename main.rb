@@ -108,7 +108,6 @@ post "/sign-up" do
 end
 
 get "/edit" do
-<<<<<<< HEAD
 
 end
 
@@ -119,7 +118,6 @@ get "/users/:id" do
 end
 
 put "/home/user" do |user|
-=======
  @user = current_user
  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
   # render list here
@@ -128,7 +126,6 @@ put "/home/user" do |user|
 end
 
 put "/home" do
->>>>>>> 2c8d6ae7e37a206cf15462dd198469c2917e9394
   if params[:password] == params[:ver_password]
     @user = current_user
 
