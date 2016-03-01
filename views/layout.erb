@@ -21,9 +21,10 @@
      <% if session[:user_id] %>
        <a href="/">Doors Closing</a>
        <a href="/home">Showtime</a>
-       <a href="/:id">Station Transfer</a>
-       <form id="friendSearch" action="/home/user" method="GET">
-         <input type="search" name="friendSearch" placeholder="Find a Freakin' Friend">
+       <a href="/edit">Station Transfer</a>
+       <form id="friendSearch" action="/users" method="GET">
+          <!-- <input type="hidden" name="_method" value="GET"> -->
+          <input type="search" name="friendSearch" placeholder="Find a Freakin' Friend">
        </form>
      <% else %>
        <a href="/sign-up">Sign up</a>
