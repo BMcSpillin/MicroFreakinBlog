@@ -91,6 +91,10 @@ post "/sign-up" do
       station: params[:station],
       bio: params[:bio]
       )
+    # route.MapRoute(
+    #   "Users",
+    #   "{handle}",
+    #   new { controller = "users", action="ShowUser", username=""});
 
       @user.save
       session[:user_id] = @user.id
@@ -104,6 +108,18 @@ post "/sign-up" do
 end
 
 get "/edit" do
+<<<<<<< HEAD
+
+end
+
+get "/users/:id" do
+  @user = User.find(params[:id])
+  @posts = @user.posts
+  erb :otheruser
+end
+
+put "/home/user" do |user|
+=======
  @user = current_user
  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
   # render list here
@@ -112,6 +128,7 @@ get "/edit" do
 end
 
 put "/home" do
+>>>>>>> 2c8d6ae7e37a206cf15462dd198469c2917e9394
   if params[:password] == params[:ver_password]
     @user = current_user
 
