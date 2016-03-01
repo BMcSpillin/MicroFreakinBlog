@@ -20,7 +20,7 @@ end
 # end
 
 get "/" do 
-  #session.clear
+  session.clear
   erb :index
 end
 
@@ -91,11 +91,15 @@ post "/sign-up" do
       station: params[:station],
       bio: params[:bio]
       )
+    # route.MapRoute(
+    #   "Users",
+    #   "{handle}",
+    #   new { controller = "users", action="ShowUser", username=""});
 
       @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You're freakin' in!"
-      redirect "/home/#{@user.handle}"
+      redirect "/home"
   else
     flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
   end
@@ -103,24 +107,27 @@ post "/sign-up" do
   erb :sign_up
 end
 
-get "/signout" do
-  session[:user_id] = nil
-  redirect "/"
+get "/edit" do
+<<<<<<< HEAD
+
 end
 
-get "/edit" do
-  @user = current_user
+get "/users/:id" do
+  @user = User.find(params[:id])
+  @posts = @user.posts
+  erb :otheruser
+end
+
+put "/home/user" do |user|
+=======
+ @user = current_user
+ # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+  # render list here
   erb :edit
 end
 
-#get "/:id" do
- # @user = current_user
- # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
-  #render list here
- # erb :edit
-#end
-
-put "/home/user" do |user|
+put "/home" do
+>>>>>>> 2c8d6ae7e37a206cf15462dd198469c2917e9394
   if params[:password] == params[:ver_password]
     @user = current_user
 
@@ -133,10 +140,10 @@ put "/home/user" do |user|
     @user.bio = params[:bio]
 
     @user.save
-    redirect "/home/#{@user.handle}"
+    redirect "/home"
   else
     flash[:alert] = "Confirm your freakin' password."
-    redirect "/:id"
+    redirect "/edit"
   end
 end
 
@@ -171,6 +178,20 @@ post "/upload" do
   tempfile = params[:image]
   filename = params[:image]
   File.copy("./public/assets/#{filename}")
-  redirect '/:id'
-  # erb :id
+  redirect '/edit'
+  # erb :edit
 end
+
+get "/friendSearch" do
+  @user = User.find_by_fname(params[:friendSearch])
+  @user = User.find_by_handle(params[:friendSearch])
+  @user = User.find_by_email(params[:friendsearch])
+
+  @user = User.find(params[:id])
+
+  redirect "/users/#{@user.id}"
+  erb :friendSearch
+end
+
+
+

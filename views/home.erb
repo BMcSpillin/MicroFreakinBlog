@@ -20,11 +20,11 @@
 <% @posts.each do |post| %>
   <article>
     <p>
+      <span><a href="/<%= post.id %>">[edit]</a></span><br>
       <%= post.content %>
-      <span><a href="/<%= post.id %>">[edit]</a></span>
     </p>
     <p class="links">
-      <a href="/<%= post.id %>/complete">&#8623;</a>
+      <a href="/<%= post.id %>/complete"><%= @user.handle %></a>
     </p>
     <p class="meta">Created: <%= post.timestamp %></p>
   </article>

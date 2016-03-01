@@ -3,7 +3,7 @@
   Your Freakin' Mug: <input type="file" id="image" name="image" accept="image/*"><br>
   <input type="submit" value="upload">
 </form>
-<form action="/home/<%= @user.handle %>" method="POST" id="edit">
+<form action="/home" method="POST" id="edit">
   <input type="hidden" name="_method" value="PUT">
   <input type="text" id="username" name="username" value="<%= @user.handle %>" placeholder="Freakin' Username" required><br>
   <input type="email" id="email" name="email" value="<%= @user.email %>" placeholder="Freakin' Email" required><br> 
