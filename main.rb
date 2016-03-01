@@ -20,7 +20,7 @@ end
 # end
 
 get "/" do 
-  #session.clear
+  session.clear
   erb :index
 end
 
@@ -91,6 +91,10 @@ post "/sign-up" do
       station: params[:station],
       bio: params[:bio]
       )
+    # route.MapRoute(
+    #   "Users",
+    #   "{handle}",
+    #   new { controller = "users", action="ShowUser", username=""});
 
       @user.save
       session[:user_id] = @user.id
@@ -109,16 +113,14 @@ get "/signout" do
 end
 
 get "/edit" do
-  @user = current_user
-  erb :edit
+
 end
 
-#get "/:id" do
- # @user = current_user
- # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
-  #render list here
- # erb :edit
-#end
+get "/users/:id" do
+  @user = User.find(params[:id])
+  @posts = @user.posts
+  erb :otheruser
+end
 
 put "/home/user" do |user|
   if params[:password] == params[:ver_password]

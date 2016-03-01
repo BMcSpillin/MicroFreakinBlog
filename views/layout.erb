@@ -17,19 +17,19 @@
         My Freakin' Commute
       </h1>    
     </header>
-    <nav>
-      <% if session[:user_id] %>
-        <a href="/">Doors Closing</a>
-        <a href="/home">Showtime</a>
-        <a href="/:id">Station Transfer</a>
-        <form id="friendSearch" action="/home/user" method="GET">
-          <input type="search" name="friendSearch" placeholder="Find a Freakin' Friend">
-        </form>
-      <% else %>
-        <a href="/sign-up">Sign up</a>
-      <% end %>
-      <a href="/mta-status">MTA STATUS</a>
-      </nav>
+ <nav>
+     <% if session[:user_id] %>
+       <a href="/">Doors Closing</a>
+       <a href="/home">Showtime</a>
+       <a href="/:id">Station Transfer</a>
+       <form id="friendSearch" action="/home/user" method="GET">
+         <input type="search" name="friendSearch" placeholder="Find a Freakin' Friend">
+       </form>
+     <% else %>
+       <a href="/sign-up">Sign up</a>
+     <% end %>
+     <a href="/mta-status">MTA STATUS</a>
+     </nav>
     <main>
 
     
