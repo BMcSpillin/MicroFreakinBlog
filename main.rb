@@ -183,15 +183,14 @@ post "/upload" do
 end
 
 get "/users" do
-  if @user = User.find_by_fname(params[:friendSearch])
-  @user = User.find_by_handle(params[:friendSearch])
-  @user = User.find_by_email(params[:friendsearch])
-  
+  if
+    @user = User.find_by_fname(params[:friendSearch])
+    @user = User.find_by_handle(params[:friendSearch])
+    @user = User.find_by_email(params[:friendsearch])
 
-  redirect "/users/url"
+    redirect "/users/url"
   end
-
-  erb :friendSearch
+    erb :friendSearch
 end
 
 get "/users/url" do

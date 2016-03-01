@@ -17,23 +17,26 @@
         My Freakin' Commute
       </h1>    
     </header>
- <nav>
-     <% if session[:user_id] %>
-       <a href="/">Doors Closing</a>
-       <a href="/home">Showtime</a>
-       <a href="/edit">Station Transfer</a>
-       <form id="friendSearch" action="/users" method="GET">
+ 
+  <% if session[:user_id] %>
+    <nav>
+      <a href="/">Doors Closing</a>
+      <a href="/home">Showtime</a>
+      <a href="/edit">Station Transfer</a>
+      <a href="/mta-status">MTA STATUS</a>
+    </nav>
+    <form id="friendSearch" action="/users" method="GET">
           <!-- <input type="hidden" name="_method" value="GET"> -->
           <input type="search" name="friendSearch" placeholder="Find a Freakin' Friend">
-       </form>
-     <% else %>
-       <a href="/sign-up">Sign up</a>
-     <% end %>
-     <a href="/mta-status">MTA STATUS</a>
-     </nav>
+    </form>
+  <% else %>
+    <nav>
+      <a href="/sign-up">Sign up</a>
+      <a href="/mta-status">MTA STATUS</a>
+    </nav>
+  <% end %>
     <main>
 
-    
       <% if flash[ :notice] %>
         <div class="flash notice">
           <%= flash[ :notice] %>
@@ -47,6 +50,7 @@
       <% end %>
         
       <%= yield %>
+      
     </main>
   </body>
 </html>

@@ -15,7 +15,6 @@ header {
    overflow: hidden;
  }  
 
-   
 #logo {
     display: inline-block;
     padding: 20px;
@@ -24,14 +23,14 @@ header {
     float:left;
   }
 
-  h1 {
-    display: inline-block;
-    font-size: 45px;
-    letter-spacing: 6px;
-    color: white; 
-    padding-left: 20px;
-    margin-top: 20px;
-  }
+h1 {
+  display: inline-block;
+  font-size: 45px;
+  letter-spacing: 6px;
+  color: white; 
+  padding-left: 20px;
+  margin-top: 20px;
+}
 
 .widget {
   width: 230px;
@@ -40,6 +39,7 @@ header {
   background-color: white;
   overflow: hidden;
 }
+
 .pagehead {
     width: 100%;
     text-align: center;
@@ -54,8 +54,21 @@ header {
 }
 
 nav {
-  padding: 20px;
+  max-width: 100%;
+  padding: .5em;
+  background-color: white;
+  display: inline-block;
+  margin-bottom: 10px;
+  float: left;
 }
+
+#friendSearch {
+  width: 300px;
+  display: inline-block;
+  margin-right: 30px;
+  float: right;
+}
+
 a {
   text-decoration: none;
   font-size: 20px;
@@ -64,9 +77,9 @@ a {
 }
 
 a:hover {
-  color:  #66ccff;
+  color: #66ccff;
   font-size: 22px;
-  cursor:alias;
+  cursor: pointer;
 }
 ///////////////////////////////////////
 
@@ -74,6 +87,27 @@ main {
   margin-top: 300px;
   max-width: 600px;
   margin: 0 auto;
+}
+
+#bio {
+  max-width: 400px;
+  padding: 0;
+  margin: 0 auto;
+  background-color: white;
+  color: #333745;
+  clear: both;
+}
+
+#bio img {
+  display: inline-block;
+}
+
+#bio div {
+  display: inline-block;
+}
+
+#bio p {
+  padding-left: 10px;
 }
 
 form {
@@ -85,16 +119,29 @@ form {
 form input, textarea {
   width: 100%;
   margin: 4px auto;
-  padding: 6px;
+  /*padding: 6px;*/
   letter-spacing: 4px;
+}
+
+#add textarea {
+  height: 100px;
 }
 
 textarea {
   resize: none;
 }
 
-#newPost {
-  height: 150px;
+#post_display {
+  max-height: 140px;
+  max-width: 400px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  background-color: darkgray;
+  color: white;
+}
+
+#post_display a {
+  font-size: 12px;
 }
 
 .flash {
@@ -108,7 +155,7 @@ textarea {
   background-color: #ccff99;
 }
 
-#friendSearch {
-  width: 300px;
-  float: right;
+.alert {
+  border: 1px solid red;
+  background-color: white; 
 }
