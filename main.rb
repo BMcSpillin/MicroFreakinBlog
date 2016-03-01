@@ -189,6 +189,7 @@ get "/users" do
   
 
   redirect "/users/url"
+  end
 
   erb :friendSearch
 end
@@ -212,7 +213,3 @@ end
 #   redirect "/users/#{@user.id}"
 #   erb :friendSearch
 # end
-
-
-
-
