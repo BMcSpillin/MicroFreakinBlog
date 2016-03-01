@@ -1,30 +1,31 @@
-<p><%= @user.handle %></p>
-<p><%= @user.station %></p>
-<p><%= @user.birthday %></p>
-<p><%= @user.bio %></p>
-<img src="assets/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px">
-<!-- find route to where image is saved -->
+<style>
+  body {
+    background-image: url("assets/derailed.jpg");
+    background-repeat: none;
+    background-size: cover;
+    margin-right: -20px; 
+  }
+</style>
 
-<section id="add">
-  <form action="/home" method="POST">
-    <textarea type="text" id="newPost" name="content" placeholder="My Freakin' Commute"></textarea>
-    <br>
-    <input type="submit" id="submit" value="Freakin' Tell Me About It">
-  </form>
-</section>
+<div id="bio">
+<!--   <img src="assets/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px"> -->
+  <!-- find route to where image is saved -->
+  <div>
+    <p><%= @user.handle %></p>
+    <p><%= @user.station %></p>
+    <p><%= @user.bio %></p>
+  </div>
+</div>
 
+<form id="add" action="/home" method="POST">
+  <textarea type="text" id="newPost" name="content" placeholder="My Freakin' Commute"></textarea><br>
+  <input type="submit" id="submit" value="Freakin' Tell Me About It">
+</form>
 
-<div class="post_display">
 <% @posts.each do |post| %>
-  <article>
-    <p>
-      <span><a href="/<%= post.id %>">[edit]</a></span><br>
-      <%= post.content %>
-    </p>
-    <p class="links">
-      <a href="/<%= post.id %>/complete"><%= @user.handle %></a>
-    </p>
-    <p class="meta">Created: <%= post.timestamp %></p>
+  <article id="post_display">
+    <p><%= @user.handle %></p>
+    <p>Created: <%= post.timestamp %></p>
+    <p><%= post.content %> <a href="/<%= post.id %>">[edit]</a></p>
   </article>
 <% end %>
-</div>

@@ -186,11 +186,10 @@ get "/users" do
   if @user = User.find_by_fname(params[:friendSearch])
   @user = User.find_by_handle(params[:friendSearch])
   @user = User.find_by_email(params[:friendsearch])
-  
 
-  redirect "/users/url"
-
-  erb :friendSearch
+    redirect "/users/url"
+  end
+    erb :friendSearch
 end
 
 get "/users/url" do
@@ -212,7 +211,3 @@ end
 #   redirect "/users/#{@user.id}"
 #   erb :friendSearch
 # end
-
-
-
-
