@@ -123,7 +123,6 @@ put "/home/user" do |user|
  @user = current_user
  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
   # render list here
-  @user = current_user
   erb :edit
 end
 
@@ -182,3 +181,17 @@ post "/upload" do
   redirect '/edit'
   # erb :edit
 end
+
+get "/friendSearch" do
+  @user = User.find_by_fname(params[:friendSearch])
+  @user = User.find_by_handle(params[:friendSearch])
+  @user = User.find_by_email(params[:friendsearch])
+
+  @user = User.find(params[:id])
+
+  redirect "/users/#{@user.id}"
+  erb :friendSearch
+end
+
+
+

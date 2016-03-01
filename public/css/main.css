@@ -107,3 +107,8 @@ textarea {
   border: 1px solid green;
   background-color: #ccff99;
 }
+
+#friendSearch {
+  width: 300px;
+  float: right;
+}
