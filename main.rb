@@ -110,8 +110,8 @@ end
 get "/edit" do
   @user = current_user
   erb :edit
-end
 
+end
 
 # put "/home" do |user|
 #  @user = current_user
@@ -119,6 +119,13 @@ end
 #   # render list here
 #   erb :edit
 # end
+
+put "/home/user" do |user|
+ @user = current_user
+ # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+  # render list here
+  erb :edit
+end
 
 put "/home" do
   if params[:password] == params[:ver_password]
