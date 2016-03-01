@@ -193,7 +193,7 @@ get "/users" do
     erb :friendSearch
 end
 
-get "/users/url" do
+get "/users/:id" do
   @user = User.find(params[:id])
   @posts = @user.posts
   erb :otheruser
