@@ -18,13 +18,15 @@
 </div>
 
 <form id="add" action="/home" method="POST">
+  <input type="hidden" id="user_id" name="user_id">
   <textarea type="text" id="newPost" name="content" placeholder="My Freakin' Commute"></textarea><br>
   <input type="submit" id="submit" value="Freakin' Tell Me About It">
 </form>
 
 <% @posts.each do |post| %>
   <article id="post_display">
-    <p><%= @user.handle %></p>
+<!-- Showing user_id, maybe need to create new migration for posts table, user_handle? -->
+    <p><%= post.user_id %></p>
     <p>Created: <%= post.timestamp %></p>
     <p><%= post.content %> <a href="/<%= post.id %>">[edit]</a></p>
   </article>
