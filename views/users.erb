@@ -1,0 +1,27 @@
+<style>
+  body {
+    background-image: url("assets/derailed.jpg");
+    background-repeat: none;
+    background-size: cover;
+    margin-right: -20px; 
+  }
+</style>
+
+<div id="bio">
+<!--   <img src="assets/#{@user.image}" alt="Freakin' Profile Pic" width="100px" height="100px"> -->
+  <!-- find route to where image is saved -->
+  <div>
+    <p><%= @user.handle %></p>
+    <p><%= @user.station %></p>
+    <p><%= @user.bio %></p>
+  </div>
+</div>
+
+  <% @posts.each do |post| %>
+    <article id="post_display">
+  <!-- Showing user_id, maybe need to create new migration for posts table, user_handle? -->
+      <p><%= post.user_id %></p>
+      <p>Created: <%= post.timestamp %></p>
+      <p><%= post.content %> <a href="/<%= post.id %>">[edit]</a></p>
+    </article>
+  <% end %>

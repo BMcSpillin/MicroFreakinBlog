@@ -15,65 +15,6 @@ def current_user
   end
 end
 
-def other_user
-  User.find(params[:id])
-end
-
-get "/" do 
-  session.clear
-  erb :index
-end
-
-post "/" do
-  @user = User.where(handle: params[:username]).first
-
-  if @user && @user.password == params[:password]
-    session[:user_id] = @user.id
-    redirect "/home"
-  else
-    redirect "/"
-    flash[:alert]
-  end
-
-  erb :index
-end
-
-get "/home" do
-  @user = current_user
-  @posts = Post.all
-  @title = "All Freakin' Posts"
-  erb :home
-end
-
-# get "/home/#{@user.handle}" do
-
-#   erb :home/"#{@user.handle}"
-# end
-
-#   if params[:friendSearch] == Users.all(:handle)
-#     || params[:friendSearch] == Users.all(:fname)
-#     || params[:friendSearch] == Users.all(:email)
-#   erb :home/friend
-# end
-
-post "/home" do
-
-  @posts = Post.where(current_user)
-
-    if current_user && params[:content] != nil
-      Post.create(
-        user_id: current_user.id,
-        content: params[:content],
-        timestamp: Time.now
-      )
-      # session[:post_id] = @post.id
-    end
-  
-  redirect "/home"
-
-  erb :home
-end
-
 get "/sign-up" do
   erb :sign_up
 end
@@ -101,30 +42,11 @@ post "/sign-up" do
       flash[:notice] = "You're freakin' in!"
       redirect "/home"
   else
+    render :sign_up
     flash[:alert] = "Check your freakin' credentials. Does your ish match?" #not popping up
   end
   
   erb :sign_up
-end
-
-get "/edit" do
-  @user = current_user
-  erb :edit
-
-end
-
-# put "/home" do |user|
-#  @user = current_user
-#  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
-#   # render list here
-#   erb :edit
-# end
-
-put "/home/user" do |user|
- @user = current_user
- # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
-  # render list here
-  erb :edit
 end
 
 put "/home" do
@@ -147,6 +69,55 @@ put "/home" do
   end
 end
 
+get "/" do 
+  session.clear
+  erb :index
+end
+
+post "/" do
+  @user = User.where(handle: params[:username]).first
+
+  if @user && @user.password == params[:password]
+    session[:user_id] = @user.id
+    redirect "/home"
+  else
+    redirect "/"
+    flash[:alert]
+  end
+
+  erb :index
+end
+
+
+get "/home" do
+  @user = current_user
+  @posts = Post.all
+  @title = "All Freakin' Posts"
+  erb :home
+end
+
+post "/home" do
+  @posts = Post.where(current_user)
+
+    if current_user && params[:content] != nil
+      Post.create(
+        user_id: current_user.id,
+        content: params[:content],
+        timestamp: Time.now
+      )
+      # @post.id = session[:post_id]
+    end
+  
+  redirect "/home"
+
+  erb :home
+end
+
+get "/edit" do
+  @user = current_user
+  erb :edit
+end
+
 delete "/:user_id" do |user|
   @user = current_user
   @user.destroy
@@ -159,6 +130,55 @@ get "/mta-status" do
   @user = current_user
   erb :mta_status
 end
+
+# get "/users" do
+#   @user = current_user
+#   @posts = User.posts
+#   @title = "Just My Freakin' Posts"
+#   erb :users
+# end
+
+get "/users" do
+    @user = current_user
+    @posts = @user.posts
+  
+  erb :users
+  # erb :otheruser
+end
+
+
+# def other_user
+#   User.find(params[:id])
+# end
+
+# get "/home/#{@user.handle}" do
+
+#   erb :home/"#{@user.handle}"
+# end
+
+#   if params[:friendSearch] == Users.all(:handle)
+#     || params[:friendSearch] == Users.all(:fname)
+#     || params[:friendSearch] == Users.all(:email)
+#   erb :home/friend
+# end
+
+
+
+# put "/home" do |user|
+#  @user = current_user
+#  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+#   # render list here
+#   erb :edit
+# end
+
+# put "/home/user" do |user|
+#  @user = current_user
+#  # list = Dir.glob("./public/assets/*.*").map{|f| f.split("/").last}
+#   # render list here
+#   erb :edit
+# end
+
+
 
 # post "/upload" do
 #   if params[:file] &&
@@ -174,37 +194,35 @@ end
 #   File.open(path, "wb") { |f| f.write(tmpfile.read) }
 # end
 
-post "/upload" do
-  tempfile = params[:image]
-  filename = params[:image]
-  File.copy("./public/assets/#{filename}")
-  redirect '/edit'
-  # erb :edit
-end
+# post "/upload" do
+#   tempfile = params[:image]
+#   filename = params[:image]
+#   File.copy("./public/assets/#{filename}")
+#   redirect '/edit'
+#   # erb :edit
+# end
 
-get "/users" do
-  if
-    @user = User.find_by_fname(params[:friendSearch])
-    @user = User.find_by_handle(params[:friendSearch])
-    @user = User.find_by_email(params[:friendsearch])
+# get "/users" do
+#   if @user
+#     @user = current_user
+#     @posts = @user.posts
 
-    redirect "/users/url"
-  end
-    erb :friendSearch
-end
+#     # @user = User.find_by_fname(params[:friendSearch]) ||
+#     # @user = User.find_by_handle(params[:friendSearch]) ||
+#     # @user = User.find_by_email(params[:friendsearch])
 
-get "/users/url" do
-  @user = User.find(params[:id])
-  @posts = @user.posts
-  erb :otheruser
-end
+#     # redirect "/users/:id"
+#   end
+#     erb :users
+# end
 
 
-get "/users" do
-  @user = other_user
 
-  erb :otheruser
-end
+# get "/users" do
+#   @user = other_user
+
+#   # erb :otheruser
+# end
 
 # put "/friendSearch" do
 #   @user = User.find(params[:id])
