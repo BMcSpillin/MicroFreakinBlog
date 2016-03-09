@@ -216,6 +216,13 @@ end
 #     erb :users
 # end
 
+# get "/users/:id" do
+#   @user = User.find(params[:id])
+#   @posts = @user.posts
+#   erb :otheruser
+# end
+
+
 
 
 # get "/users" do
