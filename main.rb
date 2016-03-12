@@ -146,6 +146,18 @@ get "/users" do
   # erb :otheruser
 end
 
+get "/search" do
+  if params[:fname] || params[:lname] || params[:id]
+  @results = user.search(search: params[:fname])
+  erb :users
+  end
+end
+
+post "/search" do
+  User.all
+  erb :users
+end
+
 
 # def other_user
 #   User.find(params[:id])
@@ -216,19 +228,20 @@ end
 #     erb :users
 # end
 
-# get "/users/:id" do
-#   @user = User.find(params[:id])
-#   @posts = @user.posts
+get "/other-users" do
+  @posts = Post.all.reverse
+  @user = User.all
+  
+  erb :otheruser
+end
+
+
+
+
+# get "/otherusers" do
+#   @user = User.all
+
 #   erb :otheruser
-# end
-
-
-
-
-# get "/users" do
-#   @user = other_user
-
-#   # erb :otheruser
 # end
 
 # put "/friendSearch" do

@@ -1,11 +1,14 @@
-<p><%= @user.station %></p>
-<p><%= @user.birthday %></p>
-<p><%= @user.bio %></p>
+
+<p><%= #@user.station %></p>
+<p><%= #@user.birthday %></p>
+<p><%= #@user.bio %></p>
 
 <% @posts.each do |post| %>
+<a href="/users/<%= post.user_id %>">
   <article id="post_display">
-    <p><%= @user.handle %></p>
+    <p><%= post.user_id %></p>
     <p>Created: <%= post.timestamp %></p>
     <p><%= post.content %> <a href="/<%= post.id %>">[edit]</a></p>
   </article>
+  </a>
 <% end %>
