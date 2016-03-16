@@ -138,13 +138,22 @@ end
 #   erb :users
 # end
 
-get "/users" do
-    @user = current_user
-    @posts = @user.posts
+get "/users/:id" do
+    @user = User.find(params[:id])
+    @posts = Post.where(user_id: params[:id])
   
   erb :users
   # erb :otheruser
 end
+
+
+get "/otheruser" do
+  # @posts = Post.all.reverse
+  @users = User.all
+
+  erb :otheruser
+end
+
 
 
 # def other_user
