@@ -146,6 +146,18 @@ textarea {
   font-size: 12px;
 }
 
+#userList {
+  background-color: white;
+  width: 20%;
+  margin: 150px auto;
+  text-align: center;
+}
+
+#userList ul {
+  list-style: none;
+  -webkit-padding-start: 0; /*quickfix found on StackOverflow*/
+}
+
 .flash {
   padding: 10px;
   border-radius: 4px;

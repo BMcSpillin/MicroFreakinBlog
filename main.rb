@@ -113,6 +113,11 @@ post "/home" do
   erb :home
 end
 
+# get "/posts/:post_id" do
+#   @post = Post.where(:id)
+#   erb :edit_post
+# end
+
 get "/edit" do
   @user = current_user
   erb :edit
@@ -137,10 +142,10 @@ end
 #   @title = "Just My Freakin' Posts"
 #   erb :users
 # end
-
-get "/users/:id" do
-    @user = User.find(params[:id])
-    @posts = Post.where(user_id: params[:id])
+# 
+get "/users" do
+    @user = User.find(current_user)
+    @posts = @user.posts
   
   erb :users
   # erb :otheruser

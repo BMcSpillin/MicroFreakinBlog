@@ -1,0 +1,17 @@
+<style>
+  body {
+    background-image: url("assets/Showtime.png");
+    background-repeat: none;
+    background-size: cover;
+    margin-right: -20px; 
+  }
+</style>
+
+<% if @user %>
+  <form id="edit_post" action="/home" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" id="post_id" name="post_id">
+    <textarea type="text" id="editPost" name="content" value="<%= @post.content %>"></textarea><br>
+    <input type="submit" id="submit" value="Freakin' Tell Me About It">
+  </form>
+<% end %>

@@ -1,7 +1,21 @@
-<% @users.each do |user| %>
-  <a href="/users/<%= user.id %>">
-    <!-- <article id="post_display"> -->
-      <%= user.handle %>
-    
-  </a>
-<% end %>
+<style>
+  body {
+    background-image: url("assets/spread.png");
+    background-repeat: none;
+    background-size: cover;
+    margin-right: -20px;
+  }
+</style>
+
+<div id="userList">
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <a href="/users/<%= user.id %>">
+          <!-- <article id="post_display"> -->
+            <%= user.handle %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -28,6 +28,6 @@
 <!-- Showing user_id, maybe need to create new migration for posts table, user_handle? -->
     <p><%= post.user_id %></p>
     <p>Created: <%= post.timestamp %></p>
-    <p><%= post.content %> <a href="/<%= post.id %>">[edit]</a></p>
+    <p><%= post.content %> <a href="/posts/<%= post.id %>">[edit]</a></p>
   </article>
 <% end %>
