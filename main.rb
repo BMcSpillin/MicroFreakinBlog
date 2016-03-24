@@ -151,6 +151,14 @@ get "/users" do
   # erb :otheruser
 end
 
+get "/users/:id" do
+    @user = User.find(params[:id])
+    @posts = Post.where(user_id: params[:id])
+  
+  erb :users
+  # erb :otheruser
+end
+
 
 get "/otheruser" do
   # @posts = Post.all.reverse
